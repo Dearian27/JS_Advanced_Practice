@@ -1,12 +1,14 @@
 const root = document.getElementById('root')
  
- 
- const createDomain = (domain) => {
-     return function(url){
-        return `http://${url}.${domain}`
-     }
+ const person1 = { name: 'Denys', age: 16, job: 'Frontend'}
+ const person2 = { name: 'Serhiy', age: 16, job: 'lazing'} 
+
+ const logPerson = () => {
+    return console.log(`Person: ${this.name}, ${this.age}, ${this.job}`)
  }
 
-  const createName = createDomain('com');
-
- root.textContent = createName("dearian");
+ const bind = (person, logPerson) => {
+    person.logPerson = logPerson;
+    person.logPerson.bind(person);
+     return logPerson();
+ }
