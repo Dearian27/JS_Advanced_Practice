@@ -1,17 +1,21 @@
 const root = document.getElementById('root')
  
-const sleep = ms => new Promise(resolve => {
-   setTimeout(() => resolve(), ms)
+const person = Object.create({}, {
+   name: {
+      value: 'Den'  // keyword "value"
+   },
+   birthYear: {
+      value: 2005,
+      enumerable: true, // can use in for cycles
+      writable: true, // can change value
+      configurable: true // can delete
+   }
 })
 
-.then(() => console.log('After 5 seconds'))
+console.log(person)
 
-Promise.all([sleep(2000), sleep(3000)]) // wait for all promises
-.then(() => {
-   console.log('all promises done')
-})
+person.birthYear = 2000;
+console.log(person)
 
-Promise.race([sleep(2000), sleep(3000)]) // wait for first promise
-.then(() => {
-   console.log('race promise')
-})
+delete person.birthYear;
+console.log(person)
