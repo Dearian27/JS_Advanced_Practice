@@ -1,29 +1,25 @@
 const root = document.getElementById('root')
  
-class Animal {
-   constructor(options)
+class Component {
+   constructor(selector)
    {
-      this.name = options.name
-      this.age = options.age
-      this.hasTale = options.hasTale
+      this.$el = document.querySelector(selector)
    }
-   voice()
-   {
-      console.log("Animal!!!")
+   hide(){
+      this.$el.style.display = 'none'
    }
-} 
-
-class Dog extends Animal{
-   constructor(options)
-   {
-      super(options)
-      this.color = options.color
-   }
-
-   voice()
-   {
-      super.voice() // call method voice from class Animal
-      console.log("ruff!!!")
+   show(){
+      this.$el.style.display = 'block'
    }
 }
-const Jack_Rassel = new Dog( {name: 'Jack', age: 3, hasTale: true, color: 'white'} )
+
+class Box extends Component {
+   constructor(options)
+   {
+      super(options.selector)
+      this.$el.style.width = this.$el.style.height = options.size + 'px'; 
+      this.$el.style.backgroundColor = options.color;
+   }
+}
+
+const box1 = new Box({selector:'#root', size: 100, color:'grey'})
