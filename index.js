@@ -1,25 +1,32 @@
 const root = document.getElementById('root')
  
-class Component {
-   constructor(selector)
-   {
-      this.$el = document.querySelector(selector)
+// 'https://jsonplaceholder.typicode.com/todos/';
+
+
+const delay = (time) => new Promise(r => setTimeout(()=>{r()},time));
+
+
+// async function fetchAsyncToDos() {
+//    console.log('Fetch todos started...')
+//    await delay(2000)
+//    const response = await fetch('https://jsonplaceholder.typicode.com/todos/')
+//    const data = await response.json()
+//    console.log('Data:', data)
+// }
+
+async function fetchAsyncToDos() {
+   try{
+      console.log('Fetch todos started...')
+      await delay(2000)
+      const response = await fetch('https://jsonplaceholder.typicode.com/todos/')
+      const data = await response.json()
+      console.log('Data:', data)
+   } catch(el){
+      console.log(el)
+   } finally {
+      // success or error
    }
-   hide(){
-      this.$el.style.display = 'none'
-   }
-   show(){
-      this.$el.style.display = 'block'
-   }
+  
 }
 
-class Box extends Component {
-   constructor(options)
-   {
-      super(options.selector)
-      this.$el.style.width = this.$el.style.height = options.size + 'px'; 
-      this.$el.style.backgroundColor = options.color;
-   }
-}
-
-const box1 = new Box({selector:'#root', size: 100, color:'grey'})
+fetchAsyncToDos();
